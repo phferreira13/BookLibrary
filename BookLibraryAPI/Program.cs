@@ -7,6 +7,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add MediatR and FluentValidation services
+builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+// Add BookRepository to the dependency injection container
+builder.Services.AddSingleton<BookRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
