@@ -67,14 +67,13 @@ namespace BookLibraryAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            // TODO: Implement DeleteBookCommand and DeleteBookCommandHandler
-            //var command = new DeleteBookCommand { Id = id };
-            //var result = await _mediator.Send(command);
+            var command = new DeleteBookCommand { Id = id };
+            var result = await _mediator.Send(command);
 
-            //if (!result)
-            //{
-            //    return NotFound();
-            //}
+            if (!result)
+            {
+                return NotFound();
+            }
 
             return NoContent();
         }
