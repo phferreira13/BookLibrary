@@ -1,3 +1,6 @@
+using BookLibraryAPI.Queries;
+using BookLibraryAPI.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,8 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add MediatR and FluentValidation services
-builder.Services.AddMediatR(typeof(Program));
-builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetBookByIdQuery>());
 
 // Add BookRepository to the dependency injection container
 builder.Services.AddSingleton<BookRepository>();

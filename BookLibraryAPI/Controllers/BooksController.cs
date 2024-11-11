@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookLibraryAPI.Models;
 using MediatR;
 using BookLibraryAPI.Commands;
+using BookLibraryAPI.Queries;
 
 namespace BookLibraryAPI.Controllers
 {
@@ -66,13 +67,14 @@ namespace BookLibraryAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            var command = new DeleteBookCommand { Id = id };
-            var result = await _mediator.Send(command);
+            // TODO: Implement DeleteBookCommand and DeleteBookCommandHandler
+            //var command = new DeleteBookCommand { Id = id };
+            //var result = await _mediator.Send(command);
 
-            if (!result)
-            {
-                return NotFound();
-            }
+            //if (!result)
+            //{
+            //    return NotFound();
+            //}
 
             return NoContent();
         }
