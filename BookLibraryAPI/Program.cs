@@ -1,5 +1,6 @@
 using BookLibraryAPI.Queries;
 using BookLibraryAPI.Repositories;
+using BookLibraryAPI.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Ge
 
 // Add BookRepository to the dependency injection container
 builder.Services.AddSingleton<BookRepository>();
+
+// Register DeleteBookCommandHandler with MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<DeleteBookCommandHandler>());
 
 var app = builder.Build();
 
