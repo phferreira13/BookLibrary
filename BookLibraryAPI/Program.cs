@@ -1,6 +1,10 @@
 using BookLibraryAPI.Queries;
 using BookLibraryAPI.Repositories;
 using BookLibraryAPI.Handlers;
+using BookLibraryAPI.Commands;
+using BookLibraryAPI.Validators;
+using FluentValidation;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,12 @@ builder.Services.AddSingleton<BookRepository>();
 
 // Register DeleteBookCommandHandler with MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<DeleteBookCommandHandler>());
+
+// Registrar o validator
+builder.Services.AddTransient<IValidator<CreateBookCommand>, CreateBookCommandValidator>();
+builder.Services.AddTransient<IValidator<UpdateBookCommand>, UpdateBookCommandValidator>();
+// Registrar o comportamento de validação
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 var app = builder.Build();
 
