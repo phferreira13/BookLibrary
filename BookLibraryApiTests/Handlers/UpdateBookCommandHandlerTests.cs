@@ -6,6 +6,8 @@ using BookLibraryAPI.Handlers;
 using BookLibraryAPI.Models;
 using BookLibraryAPI.Repositories;
 using BookLibraryApiTests.Factories;
+using FluentValidation;
+using BookLibraryAPI.Validators;
 
 namespace BookLibraryApiTests.Handlers
 {
@@ -14,12 +16,13 @@ namespace BookLibraryApiTests.Handlers
     {
         private BookRepository _bookRepository;
         private UpdateBookCommandHandler _handler;
+        private readonly IValidator<UpdateBookCommand> _validator = new UpdateBookCommandValidator();
 
         [TestInitialize]
         public void Setup()
         {
             _bookRepository = new BookRepository();
-            _handler = new UpdateBookCommandHandler(_bookRepository);
+            _handler = new UpdateBookCommandHandler(_bookRepository, _validator);
         }
 
         [TestMethod]

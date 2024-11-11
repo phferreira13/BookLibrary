@@ -27,7 +27,7 @@ namespace BookLibraryAPI.Repositories
             _books.Add(book);
         }
 
-        public void UpdateBook(Book book)
+        public Book UpdateBook(Book book)
         {
             var existingBook = GetBookById(book.Id);
             if (existingBook != null)
@@ -36,6 +36,7 @@ namespace BookLibraryAPI.Repositories
                 existingBook.Author = book.Author;
                 existingBook.PublishedYear = book.PublishedYear;
             }
+            return existingBook;
         }
 
         public void DeleteBook(int id)
