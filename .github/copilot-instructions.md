@@ -1,0 +1,3 @@
+- Este projeto trata-se de uma API para gerenciamento de uma livraria
+- É um projeto para demonstração das funcionalidades do GitHub Copilot
+- As models estão seguindo o padrão de propriedades como private set e uso de construtor
